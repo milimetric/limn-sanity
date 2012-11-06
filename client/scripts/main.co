@@ -1,0 +1,6 @@
+infuser.defaults.templateUrl = "templates"
+
+require ['models/pages/Home'], (Home) ->
+    $(document).ready ->
+        viewModel = new Home()
+        ko.applyBindings viewModel

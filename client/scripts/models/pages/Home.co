@@ -1,0 +1,10 @@
+define ['models/Dashboard', 'Storage'], (Dashboard, Storage) ->
+    class Home
+        ->
+            @currentPage('home')
+            for id of Storage.load @dashboardsPath
+                @dashboards.push(new Dashboard("#{@dashboardsPath}#{id}"))
+        
+        dashboardsPath: '/data/dashboards/'
+        currentPage: ko.observable()
+        dashboards: ko.observableArray()

@@ -1,0 +1,11 @@
+define ->
+    class Storage
+        load: (path) ->
+            ret = {}
+            $.ajax {
+                url: path,
+                async: false,
+                success: (data) -> ret.loaded = data
+            }
+            ret.loaded
+    new Storage()

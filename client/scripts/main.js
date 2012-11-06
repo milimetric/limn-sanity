@@ -1,9 +1,8 @@
 infuser.defaults.templateUrl = "templates";
-
-$(document).ready(function(){
-    var viewModel = {
-        currentPage: ko.observable('home'),
-        dashboards: ko.observableArray([])
-    };
-    ko.applyBindings(viewModel);
+require(['models/pages/Home'], function(Home){
+  return $(document).ready(function(){
+    var viewModel;
+    viewModel = new Home();
+    return ko.applyBindings(viewModel);
+  });
 });

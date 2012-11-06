@@ -1,0 +1,2 @@
+define ['elements/Base'], (BaseElement) ->
+    class LineGroupChartElement extends BaseElement

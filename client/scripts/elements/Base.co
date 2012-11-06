@@ -1,0 +1,3 @@
+define ->
+    class Base
+        elements: ko.observableArray()

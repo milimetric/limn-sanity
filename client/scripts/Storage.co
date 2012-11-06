@@ -1,11 +1,17 @@
 define ->
     class Storage
-        load: (path) ->
+        load: (path, callback) ->
             ret = {}
-            $.ajax {
+            options = do
                 url: path,
-                async: false,
-                success: (data) -> ret.loaded = data
-            }
+                async: !!callback
+                error: (err) -> ret.error = err
+            
+            if callback
+                options.success = callback
+            else
+                options.success = (data) -> ret.loaded = data
+            
+            $.ajax options
             ret.loaded
     new Storage()

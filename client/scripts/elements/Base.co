@@ -10,4 +10,6 @@ define ->
         
         rendered: (elements, data) ->
         
-        template: -> 'element/emptyGroup'
+        template: 'element/container'
+        determineTemplate: (childBeingRendered) ->
+            childBeingRendered.template

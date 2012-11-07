@@ -7,8 +7,6 @@ define ['elements/Base', 'Storage'], (BaseElement, Storage) ->
                 self.data.columnHeader = source.columnHeaders[self.data.source_col()]
                 self.data.dates = source.dates
         
-        rendered: (elements, data) ->
-            console.log 'rendered'
-            console.log elements
-            console.log data
-            console.log '/rendered'
+        rendered: (elements, self) ->
+            self.$el = $(elements[0])
+            self.$el.append("<path d=#{self.data.column}></path>")

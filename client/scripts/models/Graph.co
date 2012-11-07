@@ -1,14 +1,13 @@
-define ['Storage'], (Storage) ->
-    class Graph
+define ['Storage', 'elements/Base'], (Storage, BaseElement) ->
+    class Graph extends BaseElement
         (path) ->
             self = @
             Storage.load path, (json) ->
                 $.extend(true, self, ko.mapping.fromJSON json)
+                # this fires synchronously
                 self.populateTypeInformation(self.elements)
                 # TODO: figure out the implications of returning this or the line above
                 self
-        
-        elements: ko.observableArray()
         
         /**
          * Converts, in place, the items in an observable array to children of @see elements/Base
@@ -23,4 +22,5 @@ define ['Storage'], (Storage) ->
                 i = elements.indexOf element
                 require ["elements/#{element.elementType()}"], (ElementType) ->
                     elements()[i] := $.extend(true, new ElementType(), element)
+                    elements()[i].initialize()
                     self.populateTypeInformation(elements()[i].elements)

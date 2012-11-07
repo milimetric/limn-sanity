@@ -21,6 +21,7 @@ app.configure ->
     app.use app.router
 
     app.use express.static dir('client')
+    app.use express.static dir('data')
 
 app.configure 'development', ->
     app.use express.errorHandler()

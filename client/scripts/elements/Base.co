@@ -1,3 +1,13 @@
 define ->
     class Base
         elements: ko.observableArray()
+        
+        initialize: ->
+        
+        renderChild: (elements, data) ->
+            if elements?[0] and $(elements[0]).is(':not(.infuser-loading)')
+                data.rendered.call(@, elements, data)
+        
+        rendered: (elements, data) ->
+        
+        template: -> 'element/emptyGroup'

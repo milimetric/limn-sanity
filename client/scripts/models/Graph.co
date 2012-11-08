@@ -1,26 +1,9 @@
 define ['Storage', 'elements/Base'], (Storage, BaseElement) ->
+    # needs to extend from BaseElement for populateTypeInformation, maybe there's a better way (like a mixin)
     class Graph extends BaseElement
         (path) ->
-            self = @
+            self = this
             Storage.load path, (json) ->
                 $.extend(true, self, ko.mapping.fromJSON json)
-                # this fires synchronously
                 self.populateTypeInformation(self.elements)
-                # TODO: figure out the implications of returning this or the line above
                 self
-        
-        /**
-         * Converts, in place, the items in an observable array to children of @see elements/Base
-         * MAGIC: dynamically figures out what type each member of the elements array wants to be instantiated as
-         * @param {ko.observableArray} elements a knockout observable array
-         */
-        # TODO: refactor to a different file probably
-        populateTypeInformation: (elements) ->
-            self = @
-            elements ?= ko.observableArray()
-            ko.utils.arrayMap elements(), (element) ->
-                i = elements.indexOf element
-                require ["elements/#{element.elementType()}"], (ElementType) ->
-                    elements()[i] := $.extend(true, new ElementType(), element)
-                    elements()[i].initialize()
-                    self.populateTypeInformation(elements()[i].elements)

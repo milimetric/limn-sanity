@@ -20,7 +20,7 @@ define ->
         
         # TODO: make this not load each time it's called
         getTimeseriesMetric: (sourceId, callback) ->
-            self = @
+            self = this
             if sourceId in datasources
                 callback.call self, datasources[sourceId]
             else

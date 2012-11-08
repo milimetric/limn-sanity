@@ -1,7 +1,7 @@
 define ['pages/Base', 'models/Graph'], (BasePage, GraphModel) ->
     class Dashboard extends BasePage
         (dashboard) ->
-            @template('dashboard/view')
+            @template('dashboard')
             @dashboard(dashboard)
             for tab of dashboard.tabs()
                 for id of tab.graph_ids()

@@ -1,6 +1,2 @@
-<section class="graph" data-bind="with: page">
-<!-- ko with: graph -->
-    <h2 data-bind="text: name"></h2>
-    <div class="visualization" data-bind="template: {name: determineTemplate, foreach: elements, afterRender: renderChild}"></div>
-<!-- /ko -->
-</section>
+<h2 data-bind="text: name"></h2>
+<div class="visualization" data-bind="template: {name: determineTemplate, foreach: elements, afterRender: renderChild}"></div>

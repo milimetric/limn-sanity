@@ -1,7 +1,7 @@
 define ['pages/Base'], (BasePage) ->
     class Graph extends BasePage
         (graph) ->
-            @template('graph/view')
+            @template('graph')
             @graph(graph)
         
         graph: ko.observable()
